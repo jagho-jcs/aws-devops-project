@@ -98,9 +98,9 @@ resource "aws_network_acl" "acls_pub_prod" {
                                       aws_subnet.pub_sub_1a.*.id, 
                                       aws_subnet.pub_sub_1b.*.id,
                                       aws_subnet.pub_sub_1c.*.id
-                                  ]
-                                )
-                              }"
+                                    ]
+                                  )
+}"
 /* This needs to be changeed to a resource type to allow for 
     future ports to be added and tested in different 
     environment!...*/
