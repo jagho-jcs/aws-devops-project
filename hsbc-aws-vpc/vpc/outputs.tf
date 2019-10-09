@@ -4,7 +4,7 @@ output "vpc_tg" {
 }
 
 output "id" {
-  value = "${aws_vpc.default_vpc.id}"
+  value = "${aws_vpc.default.id}"
 }
 
 output "region" {

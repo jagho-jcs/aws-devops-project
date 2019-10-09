@@ -1,10 +1,11 @@
 module "vpc" {
   source = "./vpc"
 
-  aws_region     = var.aws_region
-  vpc_tg         = var.vpc_tg
-  vpc_cidr_block = var.vpc_cidr_block
-  igw_tg         = var.igw_tg
+  aws_region                = var.aws_region
+  vpc_tg                    = var.vpc_tg
+  vpc_cidr_block            = var.vpc_cidr_block
+  igw_tg                    = var.igw_tg
+  destination_cidr_block    = var.destination_cidr_block
 
   demo_env_default_tags = var.demo_env_default_tags
 }
@@ -14,14 +15,15 @@ module "public-subnet" {
 
   demo_env_default_tags = module.vpc.demo_env_default_tags
 
-  vpc_id           = module.vpc.id
-  aws_region       = module.vpc.region
-  vpc_tg           = var.vpc_tg
-  pub_sub_1a_tg    = var.pub_sub_1a_tg
-  pub_sub_1b_tg    = var.pub_sub_1b_tg
-  pub_sub_1c_tg    = var.pub_sub_1c_tg
-  pub_rtb_tg       = var.pub_rtb_tg
-  acls_pub_prod_tg = var.acls_pub_prod_tg
+  vpc_id                  = module.vpc.id
+  aws_region              = module.vpc.region
+  vpc_tg                  = var.vpc_tg
+  pub_sub_1a_tg           = var.pub_sub_1a_tg
+  pub_sub_1b_tg           = var.pub_sub_1b_tg
+  pub_sub_1c_tg           = var.pub_sub_1c_tg
+  pub_rtb_tg              = var.pub_rtb_tg
+  destination_cidr_block  = var.destination_cidr_block
+  acls_pub_prod_tg        = var.acls_pub_prod_tg
 }
 
 module "security-groups" {

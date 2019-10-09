@@ -6,4 +6,5 @@ variable "pub_sub_1a_tg" {}
 variable "pub_sub_1b_tg" {}
 variable "pub_sub_1c_tg" {}
 variable "pub_rtb_tg" {}
+variable "destination_cidr_block" {}
 variable "acls_pub_prod_tg" {}

@@ -17,6 +17,11 @@ variable "igw_tg" {
   description = "Internet Gateway"
   default     = "igw_stg"
 }
+# Grant the VPC internet access on its main route table
+variable "destination_cidr_block" {
+  type = "string"
+  description = "describe your variable"
+}
 
 #  Load Balancer Name Tag
 variable "ire_alb_tg" {

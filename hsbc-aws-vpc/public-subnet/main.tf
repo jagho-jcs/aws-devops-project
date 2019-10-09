@@ -90,6 +90,24 @@ resource "aws_route_table_association" "pub_sub_1c" {
   route_table_id              = "${aws_route_table.pub_rtb.id}"
 }
 
+resource "aws_internet_gateway" "default" {
+  vpc_id                      = "${var.vpc_id}"
+  
+  # tags = "${merge(var.demo_env_default_tags, map(
+  #   "Name", "${var.igw_tg}",
+  #   "Environment", "${var.vpc_tg}",
+  #   "Client", "JCS"
+  #   ))}"
+}
+
+# Grant the VPC internet access on its main route table
+resource "aws_route" "internet_access" {
+
+  route_table_id         = "${aws_route_table.pub_rtb.id}"
+  destination_cidr_block = "${var.destination_cidr_block}"
+  gateway_id             = "${aws_internet_gateway.default.id}"
+}
+
 resource "aws_network_acl" "acls_pub_prod" {
   
   vpc_id                      = "${var.vpc_id}"
@@ -147,6 +165,15 @@ resource "aws_network_acl" "acls_pub_prod" {
     cidr_block = "${var.priv_sub_1a}"
     from_port  = 22
     to_port    = 22
+  }
+
+  ingress {    /* Rule # 124*/
+    protocol   = "tcp"
+    rule_no    = 140
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 1024
+    to_port    = 65535
   }
 
   egress {     /* Rule 100 */
