@@ -106,9 +106,13 @@ resource "aws_instance" "web-instance" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt-get -y update",
+      "sudo apt-get update",
+      "sudo apt-get upgrade -y",
+      "sudo apt-get update",
+      "sudo unattended-upgrade",
+      "sudo apt-get update",
       "sudo apt-get -y install nginx",
-      "sudo systemctl start nginx",
+      "sudo systemctl start nginx"
     ]
   }
 }
