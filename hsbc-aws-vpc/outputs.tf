@@ -10,10 +10,10 @@ output "pub_sub_1a" {
   value = module.public-subnet.pub_sub_1a
 }
 
-output "pub_sub_1b" {
-  value = module.public-subnet.pub_sub_1b
-}
+# output "pub_sub_1b" {
+#   value = module.public-subnet.pub_sub_1b
+# }
 
-output "pub_sub_1c" {
-  value = module.public-subnet.pub_sub_1c
-}
+# output "pub_sub_1c" {
+#   value = module.public-subnet.pub_sub_1c
+# }

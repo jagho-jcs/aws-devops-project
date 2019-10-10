@@ -1,10 +1,18 @@
 data "aws_availability_zones" "all" {}
 
+# data "aws_availability_zone" "name" {
+#   name = "eu-west-1a"
+# }
+
+
 resource "aws_subnet" "pub_sub_1a" {
+
 
   count                       = "${length(data.aws_availability_zones.all.names)}"  
   vpc_id                      = "${var.vpc_id}"
  
+
+
   cidr_block                  = "10.10.${count.index+1}.0/24"
 
   availability_zone           = "${element(data.aws_availability_zones.all.names, count.index)}"
@@ -19,41 +27,41 @@ resource "aws_subnet" "pub_sub_1a" {
 
 }
 
-resource "aws_subnet" "pub_sub_1b" {
+# resource "aws_subnet" "pub_sub_1b" {
 
-  count                       = "${length(data.aws_availability_zones.all.names)}"
-  vpc_id                      = "${var.vpc_id}"
+#   count                       = "${length(data.aws_availability_zones.all.names)}"
+#   vpc_id                      = "${var.vpc_id}"
 
-  cidr_block                  = "10.10.${count.index+21}.0/24"
+#   cidr_block                  = "10.10.${count.index+21}.0/24"
   
-  availability_zone           = "${element(data.aws_availability_zones.all.names, count.index)}"
+#   availability_zone           = "${element(data.aws_availability_zones.all.names, count.index)}"
 
-  map_public_ip_on_launch     = true
+#   map_public_ip_on_launch     = true
   
-  tags = "${merge(var.demo_env_default_tags, map(
-    "Name", "${var.pub_sub_1b_tg}",
-    "Environment", "${var.vpc_tg}",
-    "Client", "HSBC"
-    ))}"
-}
+#   tags = "${merge(var.demo_env_default_tags, map(
+#     "Name", "${var.pub_sub_1b_tg}",
+#     "Environment", "${var.vpc_tg}",
+#     "Client", "HSBC"
+#     ))}"
+# }
 
-resource "aws_subnet" "pub_sub_1c" {
+# resource "aws_subnet" "pub_sub_1c" {
 
-  count                       = "${length(data.aws_availability_zones.all.names)}"
-  vpc_id                      = "${var.vpc_id}"
+#   count                       = "${length(data.aws_availability_zones.all.names)}"
+#   vpc_id                      = "${var.vpc_id}"
   
-  cidr_block                  = "10.10.${count.index+31}.0/24"
+#   cidr_block                  = "10.10.${count.index+31}.0/24"
 
-  availability_zone           = "${element(data.aws_availability_zones.all.names, count.index)}"
+#   availability_zone           = "${element(data.aws_availability_zones.all.names, count.index)}"
 
-  map_public_ip_on_launch     = true
+#   map_public_ip_on_launch     = true
   
-  tags = "${merge(var.demo_env_default_tags, map(
-    "Name", "${var.pub_sub_1c_tg}",
-    "Environment", "${var.vpc_tg}",
-    "Client", "HSBC"
-    ))}"
-}
+#   tags = "${merge(var.demo_env_default_tags, map(
+#     "Name", "${var.pub_sub_1c_tg}",
+#     "Environment", "${var.vpc_tg}",
+#     "Client", "HSBC"
+#     ))}"
+# }
 
 resource "aws_route_table" "pub_rtb" {
   vpc_id = "${var.vpc_id}"
@@ -70,25 +78,26 @@ resource "aws_route_table_association" "pub_sub_1a" {
   count                       = "${length(data.aws_availability_zones.all.names)}"
 
   subnet_id                   = "${element(aws_subnet.pub_sub_1a.*.id, count.index)}"
-  route_table_id              = "${aws_route_table.pub_rtb.id}"
-
-}
-
-resource "aws_route_table_association" "pub_sub_1b" {
   
-  count                       = "${length(aws_subnet.pub_sub_1b)}"
-
-  subnet_id                   = "${element(aws_subnet.pub_sub_1b.*.id, count.index)}"
   route_table_id              = "${aws_route_table.pub_rtb.id}"
+
 }
 
-resource "aws_route_table_association" "pub_sub_1c" {
+# resource "aws_route_table_association" "pub_sub_1b" {
   
-  count                       = "${length(aws_subnet.pub_sub_1c)}"
+#   count                       = "${length(aws_subnet.pub_sub_1b)}"
 
-  subnet_id                   = "${element(aws_subnet.pub_sub_1c.*.id, count.index)}"
-  route_table_id              = "${aws_route_table.pub_rtb.id}"
-}
+#   subnet_id                   = "${element(aws_subnet.pub_sub_1b.*.id, count.index)}"
+#   route_table_id              = "${aws_route_table.pub_rtb.id}"
+# }
+
+# resource "aws_route_table_association" "pub_sub_1c" {
+  
+#   count                       = "${length(aws_subnet.pub_sub_1c)}"
+
+#   subnet_id                   = "${element(aws_subnet.pub_sub_1c.*.id, count.index)}"
+#   route_table_id              = "${aws_route_table.pub_rtb.id}"
+# }
 
 resource "aws_internet_gateway" "default" {
   vpc_id                      = "${var.vpc_id}"
@@ -114,8 +123,8 @@ resource "aws_network_acl" "acls_pub_prod" {
   subnet_ids                  = "${flatten(
                                     [
                                       aws_subnet.pub_sub_1a.*.id, 
-                                      aws_subnet.pub_sub_1b.*.id,
-                                      aws_subnet.pub_sub_1c.*.id
+                                      # aws_subnet.pub_sub_1b.*.id,
+                                      # aws_subnet.pub_sub_1c.*.id
                                     ]
                                   )
 }"
