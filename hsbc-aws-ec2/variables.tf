@@ -2,11 +2,6 @@ variable "aws_region" {
   description = "AWS region"
 }
 
-variable "subnet_id" {
-  type = "string"
-  description = "describe your variable"
-}
-
 variable "key_name" {
   type = "string"
   description = "describe your variable"
