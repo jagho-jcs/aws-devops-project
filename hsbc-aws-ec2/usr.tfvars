@@ -1,7 +1,5 @@
 aws_region          = "eu-west-1"
 
-# subnet_id           = "subnet-0a7495bac3efca666"
-
 key_name            = "hsbc_demo_ireland"
 
 public_key_path     = "~/.ssh/id_rsa.pub"

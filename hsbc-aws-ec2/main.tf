@@ -1,3 +1,5 @@
+data "aws_availability_zones" "all" {}
+
 data "aws_vpc" "hsbc-demo" {
   filter {
     name = "tag:Name"
@@ -5,8 +7,29 @@ data "aws_vpc" "hsbc-demo" {
   }
 }
 
-data "aws_subnet" "selected" {
-  id = "${var.subnet_id}"
+data "aws_subnet_ids" "hsbc-subnets" {
+  vpc_id = "${data.aws_vpc.hsbc-demo.id}"
+
+  tags = {
+    Name = "Public Subnet 1a"
+  }
+}
+
+output "vpc_id" {
+  value = ["${data.aws_subnet_ids.hsbc-subnets.*.id}"]
+}
+
+data "aws_subnet" "public" {
+  count = length(data.aws_subnet_ids.hsbc-subnets.ids)
+  id    = tolist(data.aws_subnet_ids.hsbc-subnets.ids)[count.index]
+}
+
+data "aws_subnet_ids" "my_id" {
+  vpc_id = "${data.aws_vpc.hsbc-demo.id}"
+}
+
+output "subnet_ids" {
+  value = ["${data.aws_subnet_ids.my_id.*.ids}"]
 }
 
 data "aws_ami" "ubuntu" {
@@ -69,19 +92,13 @@ resource "aws_security_group" "web-instance-sg" {
     protocol        = "-1"
     cidr_blocks     = ["0.0.0.0/0"]
   }
-
-  # tags = "${merge(var.demo_env_default_tags, map(
-  #   "Name", "${var.jcswebapps_tg}",
-  #   "Environment", "${var.vpc_tg}",
-  #   "Client", "HSBC"
-  #   ))}"
 }
 
 resource "aws_key_pair" "auth-key" {
+
   key_name                = "${var.key_name}"
-  # public_key              = "${var.public_key}"
   public_key              = "${file(var.public_key_path)}"
-  # public_key              = "${file(var.public_key)}"
+  
 }
 
 resource "aws_instance" "web-instance" {
@@ -94,6 +111,8 @@ resource "aws_instance" "web-instance" {
     # The connection will use the local SSH agent for authentication.
   }
   
+  count                   = length(data.aws_subnet_ids.hsbc-subnets.ids)
+
   instance_type           = "${var.instance_type}"
 
   ami                     = "${data.aws_ami.ubuntu.id}"
@@ -101,8 +120,8 @@ resource "aws_instance" "web-instance" {
   key_name                = "${aws_key_pair.auth-key.id}"
   
   vpc_security_group_ids  = [ "${aws_security_group.web-instance-sg.id}" ]
-  
-  subnet_id               = "${data.aws_subnet.selected.id}"
+
+  subnet_id               = tolist(data.aws_subnet_ids.hsbc-subnets.ids)[count.index]
 
   provisioner "remote-exec" {
     inline = [
@@ -112,8 +131,114 @@ resource "aws_instance" "web-instance" {
       "sudo unattended-upgrade",
       "sudo apt-get update",
       "sudo apt-get -y install nginx",
-      "sudo systemctl start nginx"
+      "sudo systemctl start nginx",
+      "sudo apt-get upgrade -y",
+      "sudo apt-get autoremove -y"
     ]
   }
 }
 
+resource "aws_launch_configuration" "as_conf_web_instance" {
+  
+  name_prefix                       = "web-lc-web-instance-"
+  image_id                          = "${data.aws_ami.ubuntu.id}"
+  instance_type                     = "${var.instance_type}"
+    
+  lifecycle {
+
+    create_before_destroy           = true
+  }
+  
+}
+
+resource "aws_autoscaling_group" "wb_instance_asg" {
+
+  name                              = "Nginx Web Instance ASG"
+  
+  launch_configuration              = "${aws_launch_configuration.as_conf_web_instance.name}"
+  
+  vpc_zone_identifier               = flatten(["${data.aws_subnet.public.*.id}"])
+
+  min_size                          = 1
+  max_size                          = 1
+
+  lifecycle {
+
+    create_before_destroy           = true
+  }
+}
+
+resource "aws_security_group" "alb_hsbc_sg" {
+  
+  name                              = "hsbc_nginx_sg_alb"
+  description                       = "hsbc-aws DevOps Project"
+  vpc_id                            = "${data.aws_vpc.hsbc-demo.id}"
+
+  ingress {
+    description     = "Allows http traffic to the Application Load Balancer"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description     = "Allows http traffic to the Application Load Balancer"
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "tcp"
+    cidr_blocks     = "${var.ssh_cidr_blocks}"
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_alb" "hsbc_alb" {
+
+  name               = "HSBC-Nginx-ALB"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = ["${aws_security_group.alb_hsbc_sg.id}"]
+  
+  subnets            = "${data.aws_subnet.public.*.id}"
+  
+  tags = {
+    Environment = "hsbc-demo-alb"
+  }
+}
+
+resource "aws_alb_target_group_attachment" "hsbc_nginx_grp_att" {
+
+  count             = length(data.aws_subnet_ids.hsbc-subnets.ids)
+  target_group_arn  = aws_alb_target_group.hsbc_nginx_tgrp.arn
+  target_id         = element(aws_instance.web-instance.*.id, count.index)
+  port              = 8080
+}
+
+resource "aws_alb_target_group" "hsbc_nginx_tgrp" {
+  name              = "HSBC-NginxTargetGroup"
+  port              = 8080
+  protocol          = "HTTP"
+  vpc_id            = "${data.aws_vpc.hsbc-demo.id}"
+}
+
+resource "aws_autoscaling_attachment" "asg_att_hsbc_nginx" {
+  autoscaling_group_name = "${aws_autoscaling_group.wb_instance_asg.id}"
+  alb_target_group_arn   = "${aws_alb_target_group.hsbc_nginx_tgrp.arn}"
+}
+
+resource "aws_alb_listener" "front_end" {
+  load_balancer_arn = "${aws_alb.hsbc_alb.arn}"
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    target_group_arn = "${aws_alb_target_group.hsbc_nginx_tgrp.arn}"
+    type = "forward"
+  }
+}
