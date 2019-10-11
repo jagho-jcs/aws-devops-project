@@ -4,7 +4,7 @@ variable "aws_region" {
 
 # Block sizes must be between a /16 netmask and /28 netmask
 variable "vpc_cidr_block" {
-  description = "Uber IP addressing for demo Network"
+  description = "The CIDR block for the VPC. Default value is a valid CIDR, but not acceptable by AWS and should be overridden"
 }
 
 # VPC Name tag
