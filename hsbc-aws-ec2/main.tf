@@ -59,7 +59,7 @@ resource "aws_security_group" "web-instance-sg" {
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
-    cidr_blocks     = "${var.http_cidr_blocks}"
+    cidr_blocks     = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -187,7 +187,7 @@ resource "aws_security_group" "alb_hsbc_sg" {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
-    cidr_blocks     = "${var.ssh_cidr_blocks}"
+    cidr_blocks     = ["0.0.0.0/0"]
   }
 
   egress {
@@ -203,7 +203,7 @@ resource "aws_alb" "hsbc_alb" {
   name               = "HSBC-Nginx-ALB"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = ["${aws_security_group.alb_hsbc_sg.id}"]
+  security_groups    = ["${aws_security_group.alb_hsbc_sg.id}", "${aws_security_group.web-instance-sg.id}"]
   
   subnets            = "${data.aws_subnet.public.*.id}"
   
@@ -217,12 +217,12 @@ resource "aws_alb_target_group_attachment" "hsbc_nginx_grp_att" {
   count             = length(data.aws_subnet_ids.hsbc-subnets.ids)
   target_group_arn  = aws_alb_target_group.hsbc_nginx_tgrp.arn
   target_id         = element(aws_instance.web-instance.*.id, count.index)
-  port              = 8080
+  port              = 80
 }
 
 resource "aws_alb_target_group" "hsbc_nginx_tgrp" {
   name              = "HSBC-NginxTargetGroup"
-  port              = 8080
+  port              = 80
   protocol          = "HTTP"
   vpc_id            = "${data.aws_vpc.hsbc-demo.id}"
 }
