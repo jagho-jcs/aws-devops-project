@@ -36,3 +36,13 @@ variable "https_cidr_blocks" {
   type = "list"
   description = "describe your variable"
 }
+
+variable "min_size" {
+  type = "string"
+  description = "describe your variable"
+}
+
+variable "max_size" {
+  type = "string"
+  description = "describe your variable"
+}
