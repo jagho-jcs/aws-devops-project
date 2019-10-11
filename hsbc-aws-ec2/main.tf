@@ -115,6 +115,13 @@ resource "aws_instance" "web-instance" {
 
   instance_type           = "${var.instance_type}"
 
+  user_data = <<-EOF
+                #!/bin/bash
+                hostname="hsbc-demo-nginxsvr"
+                hostnamectl set-hostname $hostname
+                sudo sed -i " 1 s/.*/& $hostname/" /etc/hosts
+                EOF
+
   ami                     = "${data.aws_ami.ubuntu.id}"
 
   key_name                = "${aws_key_pair.auth-key.id}"
@@ -123,17 +130,43 @@ resource "aws_instance" "web-instance" {
 
   subnet_id               = tolist(data.aws_subnet_ids.hsbc-subnets.ids)[count.index]
 
+  provisioner "file" {
+    source      = "./../java-spring-boot-app/demo-0.0.1-SNAPSHOT.jar"
+    destination = "/tmp/demo-0.0.1-SNAPSHOT.jar"
+  } 
+
+  provisioner "file" {
+    source      = "./../java-spring-boot-app/scripts/helloworld.service"
+    destination = "/tmp/helloworld.service"
+  }
+
+  provisioner "file" {
+    source      = "./../java-spring-boot-app/scripts/helloworld.service"
+    destination = "/tmp/helloworld.conf"
+  }
+
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get update",
-      "sudo apt-get upgrade -y",
+      "sudo apt-get -y upgrade",
       "sudo apt-get update",
       "sudo unattended-upgrade",
       "sudo apt-get update",
+      "sudo apt-get install -y openjdk-8-jdk",      
+      "sudo apt-get update",
       "sudo apt-get -y install nginx",
       "sudo systemctl start nginx",
-      "sudo apt-get upgrade -y",
-      "sudo apt-get autoremove -y"
+      "sudo apt-get -y upgrade",
+      "sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak",
+      "sudo mv /tmp/helloworld.conf /etc/nginx/sites-available/helloworld.conf",
+      "sudo apt-get autoremove -y",
+      "sudo mkdir /opt/helloworld",
+      "sudo mv /tmp/helloworld.service /etc/systemd/system/",
+      "sudo mv /tmp/demo-0.0.1-SNAPSHOT.jar /opt/helloworld",
+      "sudo systemctl start helloworld.service",
+      "sudo ufw allow ssh",
+      "sudo ufw allow 8080",
+      "sudo ufw --force enable"
     ]
   }
 }
@@ -159,8 +192,8 @@ resource "aws_autoscaling_group" "wb_instance_asg" {
   
   vpc_zone_identifier               = flatten(["${data.aws_subnet.public.*.id}"])
 
-  min_size                          = 1
-  max_size                          = 1
+  min_size                          = var.min_size
+  max_size                          = var.max_size
 
   lifecycle {
 
