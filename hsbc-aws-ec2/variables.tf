@@ -46,3 +46,19 @@ variable "max_size" {
   type = "string"
   description = "describe your variable"
 }
+
+variable "aws_alb_target_group_attachment_port" {
+  type = "string"
+  description = "describe your variable"
+}
+
+variable "aws_alb_target_group_port" {
+  type = "string"
+  description = "describe your variable"
+  default = "default_value"
+}
+
+variable "aws_alb_listener_port" {
+  type = "string"
+  description = "describe your variable"
+}
