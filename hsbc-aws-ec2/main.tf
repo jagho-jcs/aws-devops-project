@@ -117,7 +117,7 @@ resource "aws_instance" "web-instance" {
 
   user_data = <<-EOF
                 #!/bin/bash
-                hostname="hsbc-demo-nginxsvr"
+                hostname="hsbc-demo-sprgbtsvr"
                 hostnamectl set-hostname $hostname
                 sudo sed -i " 1 s/.*/& $hostname/" /etc/hosts
                 EOF
@@ -236,9 +236,9 @@ resource "aws_alb" "hsbc_alb" {
   name               = "HSBC-Nginx-ALB"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = ["${aws_security_group.alb_hsbc_sg.id}", "${aws_security_group.web-instance-sg.id}"]
+  security_groups    = [ aws_security_group.alb_hsbc_sg.id, aws_security_group.web-instance-sg.id ]
   
-  subnets            = "${data.aws_subnet.public.*.id}"
+  subnets            = data.aws_subnet.public.*.id
   
   tags = {
     Environment = "hsbc-demo-alb"
@@ -250,24 +250,28 @@ resource "aws_alb_target_group_attachment" "hsbc_nginx_grp_att" {
   count             = length(data.aws_subnet_ids.hsbc-subnets.ids)
   target_group_arn  = aws_alb_target_group.hsbc_nginx_tgrp.arn
   target_id         = element(aws_instance.web-instance.*.id, count.index)
-  port              = 80
+  port              = var.aws_alb_target_group_attachment_port
+
 }
 
 resource "aws_alb_target_group" "hsbc_nginx_tgrp" {
+  
   name              = "HSBC-NginxTargetGroup"
-  port              = 80
+  port              = var.aws_alb_target_group_port
   protocol          = "HTTP"
-  vpc_id            = "${data.aws_vpc.hsbc-demo.id}"
+  vpc_id            = data.aws_vpc.hsbc-demo.id
 }
 
 resource "aws_autoscaling_attachment" "asg_att_hsbc_nginx" {
+  
   autoscaling_group_name = "${aws_autoscaling_group.wb_instance_asg.id}"
   alb_target_group_arn   = "${aws_alb_target_group.hsbc_nginx_tgrp.arn}"
 }
 
 resource "aws_alb_listener" "front_end" {
+  
   load_balancer_arn = "${aws_alb.hsbc_alb.arn}"
-  port              = "80"
+  port              = var.aws_alb_listener_port
   protocol          = "HTTP"
 
   default_action {
