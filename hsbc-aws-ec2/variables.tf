@@ -12,6 +12,11 @@ variable "public_key_path" {
   description = "describe your variable"
 }
 
+variable "private_key_path" {
+  type = "string"
+  description = "describe your variable"
+}
+
 variable "instance_type" {
   type = "string"
   description = "describe your variable"
