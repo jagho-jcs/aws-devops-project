@@ -69,7 +69,7 @@ resource "aws_key_pair" "auth-key" {
   
 }
 
-resource "aws_instance" "web-instance" {
+resource "aws_instance" "bastion-host" {
   # The connection block tells our provisioner how to
   # communicate with the resource (instance)
   connection {
@@ -110,6 +110,11 @@ resource "aws_instance" "web-instance" {
       "sudo ufw --force enable"
     ]
   }
+
+    tags = "${merge(var.demo_env_default_tags, map(
+    "Name", "${var.bastion_host}",
+    "Client", "HSBC"
+    ))}"
 }
 
 resource "aws_launch_configuration" "as_conf_bastion_instance" {

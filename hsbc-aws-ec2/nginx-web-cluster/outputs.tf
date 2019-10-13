@@ -1,7 +1,7 @@
-output "alb_dns_name" {
-  value = "${aws_alb.hsbc_alb.dns_name}"
-}
-
-# output "instance_ip_addr" {
-#   value = aws_instance.web-instance.private_ip
+# output "alb_address" {
+#   value = "${aws_alb.hsbc_alb.public_dns}"
 # }
+
+output "instance_ips" {
+  value = ["${aws_instance.web-instance.*.public_ip}"]
+}

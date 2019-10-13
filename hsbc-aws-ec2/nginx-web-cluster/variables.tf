@@ -67,3 +67,9 @@ variable "aws_alb_listener_port" {
   type = "string"
   description = "describe your variable"
 }
+
+variable "web_cluster" {
+  type = "string"
+  description = "describe your variable"
+  default = "nginx-web-cluster"
+}

@@ -11,7 +11,7 @@ data "aws_subnet_ids" "hsbc-subnets" {
   vpc_id = "${data.aws_vpc.hsbc-demo.id}"
 
   tags = {
-    Name = "Public Subnet 1a"
+    Name = "Public Subnet"
   }
 }
 
@@ -101,17 +101,17 @@ resource "aws_instance" "web-instance" {
   subnet_id               = tolist(data.aws_subnet_ids.hsbc-subnets.ids)[count.index]
 
   provisioner "file" {
-    source      = "./../java-spring-boot-app/demo-0.0.1-SNAPSHOT.jar"
+    source      = "./../../java-spring-boot-app/demo-0.0.1-SNAPSHOT.jar"
     destination = "/tmp/demo-0.0.1-SNAPSHOT.jar"
   } 
 
   provisioner "file" {
-    source      = "./../java-spring-boot-app/scripts/helloworld.service"
+    source      = "./../../java-spring-boot-app/scripts/helloworld.service"
     destination = "/tmp/helloworld.service"
   }
 
   provisioner "file" {
-    source      = "./../java-spring-boot-app/scripts/helloworld.service"
+    source      = "./../../java-spring-boot-app/scripts/helloworld.service"
     destination = "/tmp/helloworld.conf"
   }
 
@@ -139,6 +139,11 @@ resource "aws_instance" "web-instance" {
       "sudo ufw --force enable"
     ]
   }
+
+    tags = "${merge(var.demo_env_default_tags, map(
+    "Name", "${var.web_cluster}",
+    "Client", "HSBC"
+    ))}"
 }
 
 resource "aws_launch_configuration" "as_conf_web_instance" {

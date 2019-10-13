@@ -33,3 +33,9 @@ variable "max_size" {
   description       = "describe your variable"
   default           = 1
 }
+
+variable "bastion_host" {
+  type = "string"
+  description = "describe your variable"
+  default = "bastion-host"
+}
