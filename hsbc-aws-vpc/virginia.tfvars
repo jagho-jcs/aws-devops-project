@@ -6,6 +6,8 @@ destination_cidr_block    = "0.0.0.0/0"
 
 vpc_tg                    = "hsbc-demo"
 
+igw_tg                    = "hsbc"
+
 pub_sub_1a_tg             = "Public Subnet 1a"
 
 pub_sub_1b_tg             = "Public Subnet 1b"

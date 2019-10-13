@@ -1,10 +1,15 @@
-output "vpc_tg" {
-  value = module.vpc.vpc_tg
+output "vpc_name" {
+  value = module.vpc.vpc_name
 }
 
-output "ire_alb_tg" {
-  value = module.security-groups.ire_alb_tg
+output "region" {
+  value = module.vpc.region
+  description = "This is the region where the VPC was deployed"
 }
+
+# output "dub_alb_tg" {
+#   value = module.security-groups.dub_alb_tg
+# }
 
 # output "pub_sub_1a" {
 #   value = module.public-subnet.pub_sub_1a

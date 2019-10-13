@@ -24,7 +24,7 @@ variable "destination_cidr_block" {
 }
 
 #  Load Balancer Name Tag
-variable "ire_alb_tg" {
+variable "dub_alb_tg" {
   description = "Allows all traffic from the Application Load Balancer"
   default     = "InFacingALB"
 }

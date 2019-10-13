@@ -102,11 +102,11 @@ resource "aws_route_table_association" "pub_sub_1a" {
 resource "aws_internet_gateway" "default" {
   vpc_id                      = "${var.vpc_id}"
   
-  # tags = "${merge(var.demo_env_default_tags, map(
-  #   "Name", "${var.igw_tg}",
-  #   "Environment", "${var.vpc_tg}",
-  #   "Client", "JCS"
-  #   ))}"
+  tags = "${merge(var.demo_env_default_tags, map(
+    "Name", "${var.igw_tg}",
+    "Environment", "${var.vpc_tg}",
+    "Client", "HSBC"
+    ))}"
 }
 
 # Grant the VPC internet access on its main route table
@@ -215,6 +215,6 @@ resource "aws_network_acl" "acls_pub_prod" {
   tags = "${merge(var.demo_env_default_tags, map(
     "Name", "${var.acls_pub_prod_tg} - ${var.vpc_tg}",
     "Environment", "${var.vpc_tg}",
-    "Client", "JCS"
+    "Client", "HSBC"
     ))}"
 }

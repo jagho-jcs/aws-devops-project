@@ -1,5 +1,5 @@
 ## Variables being exported for downstream consumption
-output "vpc_tg" {
+output "vpc_name" {
   value = "${var.vpc_tg}"
 }
 
@@ -9,6 +9,10 @@ output "id" {
 
 output "region" {
   value = "${var.aws_region}"
+}
+
+output "dub_alb_tg" {
+  value = "${var.dub_alb_tg}"
 }
 
 output "demo_env_default_tags" {

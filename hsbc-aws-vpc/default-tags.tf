@@ -5,7 +5,7 @@ variable "demo_env_default_tags" {
     ConsultantName = "Yomi Ogunyinka"
     Position       = "Solutions Architect"
     ProvisionedBy  = "Terraform"
-    Location       = "Ireland"
+    Location       = "Dublin"
     DataCenter     = "New Business"
     Team           = "DevOps"
     CostCentre     = "Operations"
