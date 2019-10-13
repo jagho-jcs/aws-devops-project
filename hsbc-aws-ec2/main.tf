@@ -37,7 +37,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
   }
 
   filter {
@@ -48,49 +48,17 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
-resource "aws_security_group" "web-instance-sg" {
-  name              = "web-instance-sg"
-  description       = "Allows Access for the nginx app"
-
-  vpc_id            = "${data.aws_vpc.hsbc-demo.id}"
-
-  ingress {
-    description     = "Allows unsecure traffic to the nginx"
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
+data "aws_security_group" "web-instance-sg" {
+  filter {
+    name = "tag:Name"
+    values = ["SSH"]
   }
+}
 
-  ingress {
-    description     = "Allows secure traffic from the nginx app"
-    from_port       = 443
-    to_port         = 443
-    protocol        = "tcp"
-    cidr_blocks     = "${var.https_cidr_blocks}"
-  }
-
-  ingress {
-    description     = "Allows traffic to the nginx"
-    from_port       = 8080
-    to_port         = 8080
-    protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description     = "Allows ssh access to the web instance"
-    from_port       = 22
-    to_port         = 22
-    protocol        = "tcp"
-    cidr_blocks     = "${var.ssh_cidr_blocks}"
-  }
-
-  egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
+data "aws_security_group" "alb_hsbc_sg" {
+  filter {
+    name = "tag:Name"
+    values = ["InFacingALB"]
   }
 }
 
@@ -106,8 +74,10 @@ resource "aws_instance" "web-instance" {
   # communicate with the resource (instance)
   connection {
     # The default username for our AMI
-    user = "ubuntu"
-    host = "${self.public_ip}"
+    type                  = "ssh"
+    user                  = "ubuntu"
+    host                  = "${self.public_ip}"
+    private_key           = file(var.private_key_path)
     # The connection will use the local SSH agent for authentication.
   }
   
@@ -126,7 +96,7 @@ resource "aws_instance" "web-instance" {
 
   key_name                = "${aws_key_pair.auth-key.id}"
   
-  vpc_security_group_ids  = [ "${aws_security_group.web-instance-sg.id}" ]
+  vpc_security_group_ids  = [ data.aws_security_group.web-instance-sg.id ]
 
   subnet_id               = tolist(data.aws_subnet_ids.hsbc-subnets.ids)[count.index]
 
@@ -201,42 +171,12 @@ resource "aws_autoscaling_group" "wb_instance_asg" {
   }
 }
 
-resource "aws_security_group" "alb_hsbc_sg" {
-  
-  name                              = "hsbc_nginx_sg_alb"
-  description                       = "hsbc-aws DevOps Project"
-  vpc_id                            = "${data.aws_vpc.hsbc-demo.id}"
-
-  ingress {
-    description     = "Allows http traffic to the Application Load Balancer"
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description     = "Allows http traffic to the Application Load Balancer"
-    from_port       = 8080
-    to_port         = 8080
-    protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
-  }
-}
-
 resource "aws_alb" "hsbc_alb" {
 
   name               = "HSBC-Nginx-ALB"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [ aws_security_group.alb_hsbc_sg.id, aws_security_group.web-instance-sg.id ]
+  security_groups    = [ data.aws_security_group.alb_hsbc_sg.id, data.aws_security_group.web-instance-sg.id ]
   
   subnets            = data.aws_subnet.public.*.id
   
