@@ -4,7 +4,8 @@
 
 module "vpc" {
   source = "./vpc"
-
+  create_vpc                  = var.create_vpc
+  
   aws_region                  = var.aws_region
   vpc_cidr_block              = var.vpc_cidr_block
   destination_cidr_block      = var.destination_cidr_block

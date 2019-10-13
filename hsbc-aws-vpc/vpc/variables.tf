@@ -1,4 +1,6 @@
 ## Expected values from the caller
+variable "create_vpc" {}
+
 variable "aws_region" {}
 variable "vpc_cidr_block" {}
 variable "destination_cidr_block" {}

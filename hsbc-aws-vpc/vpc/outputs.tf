@@ -3,8 +3,14 @@ output "vpc_name" {
   value = "${var.vpc_tg}"
 }
 
+# output "id" {
+#   value = "${aws_vpc.default.id}"
+# }
+
+  
 output "id" {
-  value = "${aws_vpc.default.id}"
+  description = "The ID of the VPC"
+  value       = concat(aws_vpc.default.*.id, [""])[0]
 }
 
 output "region" {

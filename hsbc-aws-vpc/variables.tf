@@ -1,3 +1,9 @@
+variable "create_vpc" {
+  description = "Controls if VPC should be created (it affects almost all resources)"
+  type        = bool
+  default     = true
+}
+
 variable "aws_region" {
   description = "AWS region"
 }

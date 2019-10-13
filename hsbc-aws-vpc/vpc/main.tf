@@ -1,18 +1,20 @@
 # Define a vpc
 resource "aws_vpc" "default" {
+  count = var.create_vpc ? 1 : 0
+
   cidr_block                = "${var.vpc_cidr_block}"
   enable_dns_hostnames      = true
 
   tags = "${merge(var.demo_env_default_tags, map(
     "Name", "${var.vpc_tg}",
-    "Client", "JCS"
+    "Client", "HSBC"
     ))}"
 }
 
 resource "aws_security_group" "web-instance-sg" {
   name              = "web-instance-sg"
   description       = "Allows Access for the nginx app"
-  vpc_id            = "${aws_vpc.default.id}"
+  vpc_id            = "${aws_vpc.default[0].id}"
 
   ingress {
     description     = "Allows unsecure traffic to the nginx"
@@ -65,7 +67,7 @@ resource "aws_security_group" "alb_hsbc_sg" {
   
   name                              = "hsbc_nginx_sg_alb"
   description                       = "hsbc-aws DevOps Project"
-  vpc_id                            = "${aws_vpc.default.id}"
+  vpc_id                            = "${aws_vpc.default[0].id}"
 
   ingress {
     description     = "Allows http traffic to the Application Load Balancer"
