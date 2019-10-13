@@ -54,29 +54,36 @@ variable "jks_tg" {
 }
 
 #  Public Subnet Name Tag
-variable "pub_sub_1a_tg" {
+variable "public_tg" {
   description = "Public Subnet 1a Name Tag"
-  default     = "Public Subnet 1a"
+  default     = "Public Subnet"
 }
 
-#  Public Subnet Name Tag
-variable "pub_sub_1b_tg" {
-  description = "Public Subnet 1b Name Tag"
+variable "private_tg" {
+  type = "string"
+  description = "describe your variable"
+  default     = "Private Subnet"
 }
-
-#  Public Subnet Name Tag
-variable "pub_sub_1c_tg" {
-  description = "Public Subnet 1c Name Tag"
-}
-
-#  Public Route Table Name Tag
-variable "pub_rtb_tg" {
+# 
+variable "public_rtb_tg" {
   description = "Public Route Table Name Tag"
   default     = "Public Route Table"
 }
 
+variable "private_rtb_tg" {
+  type = "string"
+  description = "describe your variable"
+  default     = "Private Route Table"
+}
+
 #  Public Network ACL's Name Tag
-variable "acls_pub_prod_tg" {
+variable "acls_public_prod_tg" {
   description = "Public Network ACL's Name Tag"
   default     = "ACLS Public"
+}
+
+variable "acls_private_prod_tg" {
+  type = "string"
+  description = "describe your variable"
+  default     = "ACLS Private"
 }
