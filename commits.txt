@@ -1,0 +1,365 @@
+commit 2285940f35a66d2983ad5b05c2cad8d29e91e66c
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 18:27:10 2019 +0100
+
+    typos fixed
+
+commit 016393464cede1351222ceae6e4361320e816be5
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 18:23:28 2019 +0100
+
+    additional content added
+
+commit ed1333e346d8c143b9249e9bbed4017d0453c93d
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 18:06:05 2019 +0100
+
+    additional security group added for instances
+
+commit 3da81478771f0b43f94571ab66f7172c86d353cb
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 17:02:05 2019 +0100
+
+    readme file updated
+
+commit 5f3800fce80ddd82327e73e2b26b3073bcfe7bee
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 16:56:36 2019 +0100
+
+    typo fixed
+
+commit bddec67a571b38284023c503a861dfaf4f1e9bc6
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 16:55:43 2019 +0100
+
+    content updated
+
+commit 2eb8456a124624754f9e5cfadd588117f517f9dc
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 16:30:15 2019 +0100
+
+    content updated
+
+commit 0669912e1c18846ecf6a01b64e6b3ea00ea616e4
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 16:25:43 2019 +0100
+
+    content updated
+
+commit 729ea9cf3c7ecd6b9bf00bffbdc906f561b43242
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 16:23:40 2019 +0100
+
+    content updated
+
+commit fd3dac2f2783becb2eef00f10a034d03f06200fd
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 16:16:10 2019 +0100
+
+    added content to files
+
+commit 3ae0eafe6034282461748409e7937b2178952080
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 15:27:08 2019 +0100
+
+    various bugs fixed
+
+commit 498ecfa24c43ed4eaae3fa6267cbe4f7e98e1d5c
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 08:28:19 2019 +0100
+
+    readme file added
+
+commit f2f680f3e64749f4e32c9b607f055fe84f1553de
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Mon Oct 14 08:07:41 2019 +0100
+
+    readme file added
+
+commit 258b8850e25ebb5f298f8cd8f5c809d214d79c4c
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 22:09:18 2019 +0100
+
+    additional code added
+
+commit 31940bd69366ef5aad48ea5140dcbc103451146b
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 22:06:33 2019 +0100
+
+    cleaning up code
+
+commit 0442767d65eebf1a45face08e77734f9ec755c52
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 18:35:00 2019 +0100
+
+    additional file added to be excluded.
+
+commit ba428389b4cb7bc62fadf9ce0064ef6f78c421f7
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 18:09:02 2019 +0100
+
+    additional resources added
+
+commit 330b970f3ed6cd113678d6353de21412b63753bf
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 18:07:23 2019 +0100
+
+    additional resources added
+
+commit fbe117a53e876952e8fc71f177442b1682c03203
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 18:05:36 2019 +0100
+
+    old files removed
+
+commit ceccee80df83befe2be450b3b8c21362f6f4140a
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 18:00:49 2019 +0100
+
+    duplicate files removed
+
+commit f3e5ec8179aeb7477360b134e035b240b1267f61
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 17:59:31 2019 +0100
+
+    old files removed
+
+commit 34107c0df14a91b0f1159bdd875b79bb26f1106c
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 12:34:07 2019 +0100
+
+    empty file removed
+
+commit bfab8dda66eaa2441fca8d05ae3c1ba2ae9d37fc
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 12:28:37 2019 +0100
+
+    additional files required
+
+commit 9e4e2f1f670c7fcd6b1a5bf14b0cbc6bc642c001
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 12:27:21 2019 +0100
+
+    default tags added
+
+commit f750f0fbed4930ddc753b2de5656ee2f150abc09
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 12:25:48 2019 +0100
+
+    additional variables added
+
+commit 2d4011300f09f7372f105fb3462c63c300e0d6f4
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 12:25:07 2019 +0100
+
+    additional outputs added
+
+commit 39bb4157d199a267e77e65f731cc006f650975b2
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 12:24:28 2019 +0100
+
+    bug fixed in code
+
+commit 0ae9965614b0c51eee8cc64ee2bbe42c722460dc
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 12:22:54 2019 +0100
+
+    file created for testing no longer required
+
+commit 8b123ec5588459c1e9347e3557a41b3b46f44283
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 12:21:57 2019 +0100
+
+    version provider changed due to a bug in terraform
+
+commit 049964ca1a2887dd8ed90a4b37dbaafd123ef95d
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 12:20:57 2019 +0100
+
+    additional files excluded from repo
+
+commit b00443780b9316d6c93546bbed77a315beea0db1
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sun Oct 13 12:17:41 2019 +0100
+
+    changed file structure
+
+commit b14acf310a8673ca3cbd748c57ec2c4537cf9a41
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sat Oct 12 05:55:11 2019 +0100
+
+    additional space in file removed
+
+commit fc6fd05ddd612cbd881a92e185172e6f022e2783
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sat Oct 12 05:53:02 2019 +0100
+
+    cleanup code
+
+commit 741947fea66a36b6d9151e2a299b3914ac4fe84f
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sat Oct 12 05:51:01 2019 +0100
+
+    clean up the code
+
+commit 27d4189d61da082c7818d15217453f28115241ce
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Sat Oct 12 05:49:58 2019 +0100
+
+    additional variables added
+
+commit f308887eaba22a5e0448407896279b483e57544d
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Fri Oct 11 19:53:53 2019 +0100
+
+    additional vars added
+
+commit da331200e80a70b4f4e4d74b3c13d960aa974b90
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Fri Oct 11 19:53:05 2019 +0100
+
+    additional vars added
+
+commit ab110908a53da4ee0b47e4003f954fa318ff0acf
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Fri Oct 11 19:50:45 2019 +0100
+
+    additional configuration files added
+
+commit bce19a67303c31372e9aea8e7f8a88a7d1b12047
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Fri Oct 11 12:11:52 2019 +0100
+
+    example java spring boot app added
+
+commit 24f3a84a8b344d90784167d7a547628e2fa2a3b7
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Fri Oct 11 10:42:34 2019 +0100
+
+    attached additional security group to the load balancer
+
+commit 87632037791aeec8e7b43a453621ebde0eb2bf18
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Fri Oct 11 09:31:04 2019 +0100
+
+    code cleanup
+
+commit 13dfc71cd85c8dc0b9a6805458127fdd32551c7d
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Fri Oct 11 09:20:10 2019 +0100
+
+    various bugs fixed
+
+commit 77ba5eb32975798725dd681c6e98d1f4107d8bd1
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Fri Oct 11 09:19:02 2019 +0100
+
+    various bugs fixed
+
+commit d7b4be5279004450fb98f5515772595ea298b2db
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Thu Oct 10 17:49:31 2019 +0100
+
+    additional configuration added to files
+
+commit e1dcd8fc5b438fb68ae9a433146c96069ed4df83
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Thu Oct 10 17:45:45 2019 +0100
+
+    variables updated
+
+commit c570f38c1fd740a68e735a9dc500c4d1c5141b84
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Thu Oct 10 17:44:40 2019 +0100
+
+    ALB address added to output
+
+commit 8198ccacd736583841440ea0d1756ebb0bdbff4d
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Thu Oct 10 11:11:40 2019 +0100
+
+    deployment to all 'avaialabilty zones'
+
+commit c87b18f8a8d7d29c6c966d0905b6f8fcf7923aab
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Thu Oct 10 05:48:02 2019 +0100
+
+    provisoner update to install latest security patches to instance
+
+commit c369dc54abff31836aca689f0c436fbb79da5258
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Wed Oct 9 20:03:03 2019 +0100
+
+    subnet_id updated
+
+commit 689f2771ede60f51c5d2d48e2b4a36336b4c1504
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Wed Oct 9 20:02:06 2019 +0100
+
+    NACLS removed not allowing instance to connect needs fixing
+
+commit 3cc5108963c843a9409c4b95a76de0236eadb07d
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Wed Oct 9 20:00:39 2019 +0100
+
+    private ip addresses added
+
+commit 77527832e53e7f5cc764f59510b16d7f0f1cd887
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Wed Oct 9 19:07:06 2019 +0100
+
+    test file removed
+
+commit f2fc607b314c5d441e47e537cd7241bf2e5cfe5a
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Wed Oct 9 19:05:12 2019 +0100
+
+    ssh access issues fixed
+
+commit e29e7b9fd2c25ee7fa9ab93356662d7529b6985b
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Tue Oct 8 16:36:16 2019 +0100
+
+    unused files removed
+
+commit f791dc2919a95cfd612f4ebddb40a3b8b7e19a31
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Tue Oct 8 16:35:44 2019 +0100
+
+    unused files removed
+
+commit fbab4faa70ba5bfbfbaaa883c6f5bb9b4ee45043
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Tue Oct 8 16:30:03 2019 +0100
+
+    gitignore file added
+
+commit c8212d81da5fedd2940b86252600ba3c2025f847
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Tue Oct 8 16:19:09 2019 +0100
+
+    test file added
+
+commit 934e793fa7ec2bc616b8999a334bf0197b2e1964
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Tue Oct 8 15:56:53 2019 +0100
+
+    terraform files excluded from the repo
+
+commit 16fa471b255e83d3932412045db03fa5633357cf
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Tue Oct 8 15:52:11 2019 +0100
+
+    initial commit
+
+commit 4c9dd7545c61040a952059fb6f220628ffa0fd2b
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Tue Oct 8 15:50:59 2019 +0100
+
+    indentation fixed
+
+commit 1587024a660f86339cdc4e00289e0433807c916d
+Author: kbab6aoo <kbab6aoo@hotmail.com>
+Date:   Tue Oct 8 14:31:45 2019 +0100
+
+    initial commit
