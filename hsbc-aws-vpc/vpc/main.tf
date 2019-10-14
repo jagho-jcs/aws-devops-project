@@ -99,3 +99,65 @@ resource "aws_security_group" "alb_hsbc_sg" {
     "Project", "aws-devops-terraform"
     ))}"
 }
+resource "aws_security_group" "bastion-sg" {
+  name              = "bastion-sg"
+  description       = "Bastion Jump Box"
+  vpc_id            = "${aws_vpc.default[0].id}"
+
+  ingress {
+    description     = "Allows ssh access to bastion"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+    
+    tags = "${merge(var.demo_env_default_tags, map(
+    "Name", "${var.ssh_bastion_tg}",
+    "Environment", "${var.vpc_tg}",
+    "Client", "HSBC",
+    "Project", "aws-devops-terraform"
+    ))}"
+}
+resource "aws_security_group" "private-sg" {
+  name              = "private-sg"
+  description       = "Bastion Jump Box"
+  vpc_id            = "${aws_vpc.default[0].id}"
+
+  ingress {
+    description     = "Public HTTP Access"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description     = "Bastion RDP Access"
+    from_port       = 3389
+    to_port         = 3389
+    protocol        = "tcp"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+    
+    tags = "${merge(var.demo_env_default_tags, map(
+    "Name", "${var.ssh_private_tg}",
+    "Environment", "${var.vpc_tg}",
+    "Client", "HSBC",
+    "Project", "aws-devops-terraform"
+    ))}"
+}

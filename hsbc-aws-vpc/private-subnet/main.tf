@@ -47,7 +47,7 @@ resource "aws_network_acl" "acls_private_prod" {
   
   subnet_ids                  = aws_subnet.private.*.id 
 
-/* This needs to be changeed to a resource type to allow for 
+/* This needs to be changed to a resource type to allow for 
     future ports to be added and tested in different 
     environment!...*/
   ingress {    /* Rule # 100*/

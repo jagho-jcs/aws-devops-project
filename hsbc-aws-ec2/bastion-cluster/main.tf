@@ -48,10 +48,10 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
-data "aws_security_group" "web-instance-sg" {
+data "aws_security_group" "bastion-sg" {
   filter {
     name = "tag:Name"
-    values = ["SSH"]
+    values = ["BastionSG"]
   }
 }
 
@@ -96,7 +96,7 @@ resource "aws_instance" "bastion-host" {
 
   key_name                = "${aws_key_pair.auth-key.id}"
   
-  vpc_security_group_ids  = [ data.aws_security_group.web-instance-sg.id ]
+  vpc_security_group_ids  = [ data.aws_security_group.bastion-sg.id ]
 
   subnet_id               = tolist(data.aws_subnet_ids.hsbc-subnets.ids)[count.index]
 

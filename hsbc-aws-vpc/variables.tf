@@ -47,9 +47,20 @@ variable "ssh_admin_tg" {
   default     = "SSH"
 }
 
+# Security Group Name Tag for the Bastion
+variable "ssh_bastion_tg" {
+  description = "Allows SSH access to the Bastion"
+  default     = "BastionSG"
+}
+
+variable "ssh_private_tg" {
+  description = "Allows SSH access from the Bastion"
+  default     = "PrivateSG"
+}
+
 #  Public Subnet Name Tag
 variable "public_tg" {
-  description = "Public Subnet 1a Name Tag"
+  description = "Public Subnet Name Tag"
   default     = "Public Subnet"
 }
 

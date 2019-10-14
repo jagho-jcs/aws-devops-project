@@ -13,6 +13,8 @@ module "vpc" {
   igw_tg                      = var.igw_tg
   vpc_tg                      = var.vpc_tg
   ssh_admin_tg                = var.ssh_admin_tg
+  ssh_bastion_tg              = var.ssh_bastion_tg
+  ssh_private_tg              = var.ssh_private_tg
   dub_alb_tg                  = var.dub_alb_tg
   
   demo_env_default_tags       = var.demo_env_default_tags
