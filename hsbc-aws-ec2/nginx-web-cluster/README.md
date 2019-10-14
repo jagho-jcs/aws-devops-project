@@ -2,7 +2,7 @@
 
 Configuration in this directory will create a Nginx web cluster.
 
-This example outputs instance id and public DNS name as a single value and as a list.
+This example outputs subnet ids, a vpc_id and the public DNS name for the Application Load Balancer as a single value and as a list.
 
 ## Usage
 
@@ -14,7 +14,9 @@ $ terraform plan
 $ terraform apply -var-file=dublin.tfvars
 ```
 
-Note that this example may create resources which can cost money. Run `terraform destroy` when you don't need these resources.
+Note that this example may create resources which you maybe charged. 
+
+Run `terraform destroy` when you don't need these resources.
 
 ## Outputs
 
