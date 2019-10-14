@@ -1,5 +1,6 @@
-variable "aws_region" {
-  description = "AWS region"
+variable "region" {
+  type = "string"
+  description = "describe your variable"
 }
 
 variable "key_name" {
@@ -60,7 +61,6 @@ variable "aws_alb_target_group_attachment_port" {
 variable "aws_alb_target_group_port" {
   type = "string"
   description = "describe your variable"
-  default = "default_value"
 }
 
 variable "aws_alb_listener_port" {
@@ -71,5 +71,4 @@ variable "aws_alb_listener_port" {
 variable "web_cluster" {
   type = "string"
   description = "describe your variable"
-  default = "nginx-web-cluster"
 }

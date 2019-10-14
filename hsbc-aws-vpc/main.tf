@@ -6,9 +6,10 @@ module "vpc" {
   source = "./vpc"
   create_vpc                  = var.create_vpc
   
-  aws_region                  = var.aws_region
+  region                      = var.region
   vpc_cidr_block              = var.vpc_cidr_block
   destination_cidr_block      = var.destination_cidr_block
+  ssh_cidr_blocks             = var.ssh_cidr_blocks
   igw_tg                      = var.igw_tg
   vpc_tg                      = var.vpc_tg
   ssh_admin_tg                = var.ssh_admin_tg
@@ -20,7 +21,7 @@ module "vpc" {
 module "public-subnet" {
   source = "./public-subnet"
 
-  aws_region                  = module.vpc.region
+  region                      = module.vpc.region
   vpc_id                      = module.vpc.id
   destination_cidr_block      = var.destination_cidr_block
   vpc_tg                      = var.vpc_tg
@@ -35,7 +36,7 @@ module "public-subnet" {
 module "private-subnet" {
   source = "./private-subnet"
   
-  aws_region                  = module.vpc.region
+  region                      = module.vpc.region
   vpc_id                      = module.vpc.id
   vpc_tg                      = var.vpc_tg
   private_tg                  = var.private_tg

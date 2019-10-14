@@ -45,7 +45,7 @@ resource "aws_security_group" "web-instance-sg" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    cidr_blocks     = ["188.28.161.5/32"]
+    cidr_blocks     = var.ssh_cidr_blocks
   }
 
   egress {

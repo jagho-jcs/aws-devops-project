@@ -1,16 +1,22 @@
+variable "region" {
+  type = "string"
+  description = "describe your variable"
+}
+
 variable "create_vpc" {
   description = "Controls if VPC should be created (it affects almost all resources)"
   type        = bool
   default     = true
 }
 
-variable "aws_region" {
-  description = "AWS region"
-}
-
 # Block sizes must be between a /16 netmask and /28 netmask
 variable "vpc_cidr_block" {
   description = "The CIDR block for the VPC. Default value is a valid CIDR, but not acceptable by AWS and should be overridden"
+}
+
+variable "ssh_cidr_blocks" {
+  type = "list"
+  description = "describe your variable"
 }
 
 # VPC Name tag
@@ -39,24 +45,6 @@ variable "dub_alb_tg" {
 variable "ssh_admin_tg" {
   description = "Allows SSH admin access"
   default     = "SSH"
-}
-
-#  Security Group Name Tag
-variable "jcswebapps_tg" {
-  description = "Allows SSH admin access"
-  default     = "JCSWebAppsALB"
-}
-
-#  Security Group Name Tag
-variable "efs_tg" {
-  description = "Allows SSH admin access"
-  default     = "EFS"
-}
-
-#  Security Group Name Tag
-variable "jks_tg" {
-  description = "Allows Access to the Jenkins Dashboard"
-  default     = "JenkinsMastersSG"
 }
 
 #  Public Subnet Name Tag

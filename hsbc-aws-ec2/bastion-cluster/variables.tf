@@ -1,5 +1,6 @@
-variable "aws_region" {
-  description       = "AWS region"
+variable "region" {
+  type = "string"
+  description = "describe your variable"
 }
 
 variable "key_name" {
@@ -22,20 +23,37 @@ variable "instance_type" {
   description       = "describe your variable"
 }
 
+variable "ssh_cidr_blocks" {
+  type = "list"
+  description = "describe your variable"
+}
+
+variable "ssl_cidr_blocks" {
+  type = "list"
+  description = "describe your variable"
+}
+
+variable "http_cidr_blocks" {
+  type = "list"
+  description = "describe your variable"
+}
+
+variable "https_cidr_blocks" {
+  type = "list"
+  description = "describe your variable"
+}
+
 variable "min_size" {
   type              = "string"
   description       = "describe your variable"
-  default           = 1
 }
 
 variable "max_size" {
   type              = "string"
   description       = "describe your variable"
-  default           = 1
 }
 
 variable "bastion_host" {
   type = "string"
   description = "describe your variable"
-  default = "bastion-host"
 }

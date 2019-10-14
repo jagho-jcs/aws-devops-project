@@ -1,4 +1,4 @@
-variable "aws_region" {}
+variable "region" {}
 variable "vpc_id" {}
 variable "vpc_tg" {}
 variable "private_tg" {}

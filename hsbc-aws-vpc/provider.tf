@@ -5,5 +5,5 @@ provider "aws" {
 
   shared_credentials_file = "/../../.aws/credentials"
   profile                 = "dev-jcs"
-  region                  = "${var.aws_region}"
+  region                  = "${var.region}"
 }

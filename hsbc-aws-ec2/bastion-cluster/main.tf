@@ -78,7 +78,7 @@ resource "aws_instance" "bastion-host" {
     user                  = "ubuntu"
     host                  = "${self.public_ip}"
     private_key           = file(var.private_key_path)
-    # The connection will use the local SSH agent for authentication.
+    # The connection to use for the local SSH agent for authentication.
   }
   
   count                   = length(data.aws_subnet_ids.hsbc-subnets.ids)
@@ -119,7 +119,7 @@ resource "aws_instance" "bastion-host" {
 
 resource "aws_launch_configuration" "as_conf_bastion_instance" {
   
-  name_prefix                       = "bastion-lc-instance-"
+  name_prefix                       = "bastion-lc-"
   image_id                          = "${data.aws_ami.ubuntu.id}"
   instance_type                     = "${var.instance_type}"
     

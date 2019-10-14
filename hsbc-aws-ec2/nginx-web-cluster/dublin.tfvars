@@ -1,20 +1,22 @@
-aws_region                                = "eu-west-1"
+region                                    = "eu-west-1"
 
-key_name                                  = "hsbc_demo_ireland"
+web_cluster                               = "web_cluster"
 
-public_key_path                           = "~/.ssh/hsbc_demo_ireland.pub"
+key_name                                  = "hsbc_demo_web_cluster"
 
-private_key_path                          = "~/.ssh/hsbc_demo_ireland"
+public_key_path                           = "~/.ssh/hsbc_demo.pub"
+
+private_key_path                          = "~/.ssh/hsbc_demo"
 
 instance_type                             = "t2.micro"
 
-ssh_cidr_blocks                           = ["188.28.161.5/32"]
+ssh_cidr_blocks                           = ["94.196.181.227/32"]
 
-ssl_cidr_blocks                           = ["92.40.46.60/32"]
+ssl_cidr_blocks                           = ["94.196.181.227/32"]
 
-http_cidr_blocks                          = ["92.40.46.60/32"]
+http_cidr_blocks                          = ["94.196.181.227/32"]
 
-https_cidr_blocks                         = ["92.40.46.60/32"]
+https_cidr_blocks                         = ["94.196.181.227/32"]
 
 min_size                                  = 1
 

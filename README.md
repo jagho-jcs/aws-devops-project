@@ -1,6 +1,6 @@
 # AWS DevOps Project Terraform
 
-This has been tested using Terraform v0.12.x we advise you use this version as we will test your code with the same.
+This has been tested using Terraform v0.12.x.
 
 To run terraform use the following command:
 
