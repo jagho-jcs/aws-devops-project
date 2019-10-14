@@ -33,9 +33,9 @@ Assuming that the web servers on these Window and Linux machines are running on 
 
 All other ports should be blocked.  The Bastion host needs to `SSH` to port 80 on the Linux Server and RDP port 3389 on the Windows Server so that it can be used for remote access to these machines.
 
-For this project, I have created one security group for both types if instances `PrivateSG`.
+For this project, I have created one security group for both types of instances `PrivateSG`.
 
-There is an assumption here that we are using the default Network Access Control List (NACL) for the subnets which allows all the traffic. 
+There is an assumption here that we are not using the default Network Access Control List (NACL) for the subnets which allows all the traffic and the deployment reflects this.
 
 You will notice that I am not using the default so this will need to be configured.
 
