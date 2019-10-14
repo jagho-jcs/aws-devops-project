@@ -1,6 +1,6 @@
 # Nginx Web Cluster As Reverse Proxy
 
-Configuration in this directory creates Nginx web cluster with minimum set of arguments.
+Configuration in this directory will create a Nginx web cluster.
 
 This example outputs instance id and public DNS name as a single value and as a list.
 
