@@ -25,7 +25,7 @@ Run `terraform destroy` when you don't need these resources.
 | alb_address| address of the alb created |
 | subnet_ids | List of subnet |
 | vpc_id | VPC IDs |
-
+| instacne_public_ips | List of Public IPs |
 
 ```
 curl http://<alb_address>
