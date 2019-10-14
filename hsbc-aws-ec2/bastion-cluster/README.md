@@ -27,3 +27,16 @@ Run `terraform destroy` when you don't need these resources.
 | subnet_ids | List of subnet |
 | vpc_id | VPC IDs |
 | instance_public_ips | List of Public IPs |
+
+
+Assuming that the web servers on these Window and Linux machines are running on default ports, we need to enable public access to port 80.
+
+All other ports should be blocked.  The Bastion host needs to `SSH` to port 80 on the Linux Server and RDP port 3389 on the Windows Server so that it can be used for remote access to these machines.
+
+For this project, I have created one security group for both types if instances `PrivateSG`.
+
+There is an assumption here that we are using the default Network Access Control List (NACL) for the subnets which allows all the traffic. 
+
+You will notice that I am not using the default so this will need to be configured.
+
+The default build will also enable the ubuntu `UFW` this is currently setup to only allow `SSH`. 
