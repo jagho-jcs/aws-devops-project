@@ -8,4 +8,4 @@ vpc_tg                    = "hsbc-demo"
 
 igw_tg                    = "hsbc"
 
-ssh_cidr_blocks           = ["94.196.181.227/32"]
+ssh_cidr_blocks           = ["0.0.0.0/0"]

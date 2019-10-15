@@ -10,13 +10,13 @@ private_key_path                          = "~/.ssh/hsbc_demo"
 
 instance_type                             = "t2.micro"
 
-ssh_cidr_blocks                           = ["94.196.181.227/32"]
+ssh_cidr_blocks                           = ["0.0.0.0/0"]
 
-ssl_cidr_blocks                           = ["94.196.181.227/32"]
+ssl_cidr_blocks                           = ["0.0.0.0/0"]
 
-http_cidr_blocks                          = ["94.196.181.227/32"]
+http_cidr_blocks                          = ["0.0.0.0/0"]
 
-https_cidr_blocks                         = ["94.196.181.227/32"]
+https_cidr_blocks                         = ["0.0.0.0/0"]
 
 min_size                                  = 1
 
