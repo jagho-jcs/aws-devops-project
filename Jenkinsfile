@@ -41,7 +41,7 @@ pipeline {
             }
         }
 
-        stage('Checkout upsa-repo Repository') {
+        stage('Checkout jagho-jcs repository') {
 
             steps {
 
