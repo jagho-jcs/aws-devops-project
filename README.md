@@ -1,4 +1,4 @@
-# AWS WebApp-Cluster Project - Terraform
+# WebApp-Cluster Project - Terraform
 
 This has been tested using Terraform v0.12.x.
 
