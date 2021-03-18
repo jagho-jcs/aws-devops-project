@@ -21,3 +21,9 @@ $ terraform init
 $ terraform plan
 $ terraform apply
 ```
+### Requirements
+
+| Name | 	Version |
+|------|-------------|
+| terraform| >=0.12.21 |
+| aws | >=3.10 |
