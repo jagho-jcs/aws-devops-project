@@ -6,3 +6,4 @@ backend.tf
 *.log
 *.txt
 provider.tf
+*.tfvars
