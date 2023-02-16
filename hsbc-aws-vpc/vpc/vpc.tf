@@ -21,7 +21,7 @@ resource "aws_security_group" "web-instance-sg" {
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks     = ["0.0.0.0/0"]   # This is allows inbound traffic from the Internet to reach our Application
   }
 
   ingress {
@@ -29,7 +29,7 @@ resource "aws_security_group" "web-instance-sg" {
     from_port       = 443
     to_port         = 443
     protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks     = ["0.0.0.0/0"]   # This allows inbound traffic from the Internet to reach our Application
   }
 
   ingress {
@@ -37,7 +37,7 @@ resource "aws_security_group" "web-instance-sg" {
     from_port       = 8080
     to_port         = 8080
     protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks     = ["0.0.0.0/0"]   # This allows inbound traffic from the Internet to reach our Application
   }
 
   ingress {
@@ -52,7 +52,7 @@ resource "aws_security_group" "web-instance-sg" {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks     = ["0.0.0.0/0"]   # This allows outbound traffic from the Application
   }
     
     tags = "${merge(var.demo_env_default_tags, map(
@@ -74,7 +74,7 @@ resource "aws_security_group" "alb_hsbc_sg" {
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks     = ["0.0.0.0/0"]  # This allows outbound traffic from the Application
   }
 
   ingress {
@@ -109,14 +109,14 @@ resource "aws_security_group" "bastion-sg" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks     = ["0.0.0.0/0"]  # This allows inbound traffic for the Bastion
   }
 
   egress {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks     = ["0.0.0.0/0"] # This allows outbound traffic from the Bastion
   }
     
     tags = "${merge(var.demo_env_default_tags, map(
